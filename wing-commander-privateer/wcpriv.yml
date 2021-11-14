@@ -1,0 +1,24 @@
+name: "Wing Commander Privateer"
+game_slug: wing-commander-privateer
+version: Download
+slug: wing-commander-privateer
+runner: dosbox
+script:
+  files:
+    - setup: N/A:Select the Windows installer downloaded from GOG
+    - dosconf: https://raw.githubusercontent.com/keenanweaver/lutris-files/main/wing-commander-privateer/dosboxPRIV_lutris.conf
+  game:
+    gogid: 1207658938
+    main_file: $GAMEDIR/dosboxPRIV_lutris.conf
+  installer:
+    - extract:
+        file: setup
+        dst: $GAMEDIR
+    - copy:
+        description: Move GOG files to $GAMEDIR
+        src: $GAMEDIR/__support/app
+        dst: $GAMEDIR
+    - merge:
+        description: Move DOSBox config to $GAMEDIR
+        src: dosconf
+        dst: $GAMEDIR
