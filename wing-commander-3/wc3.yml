@@ -1,0 +1,25 @@
+name: "Wing Commander III"
+game_slug: wing-commander-iii
+version: Download
+slug: wing-commander-iii
+runner: dosbox
+script:
+  files:
+    - setup: N/A:Select the Windows installer downloaded from GOG
+    - dosconf: https://raw.githubusercontent.com/keenanweaver/lutris-files/main/wing-commander-3/dosboxWC3_lutris.conf
+  game:
+    gogid: 1207658966
+    main_file: $GAMEDIR/dosboxWC3_lutris.conf
+  installer:
+    - extract:
+        description: Extract GOG installer
+        file: setup
+        dst: $GAMEDIR
+    - copy:
+        description: Move GOG files to $GAMEDIR
+        src: $GAMEDIR/__support/app
+        dst: $GAMEDIR
+    - merge:
+        description: Move DOSBox config to $GAMEDIR
+        src: dosconf
+        dst: $GAMEDIR
