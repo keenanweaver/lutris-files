@@ -1,0 +1,24 @@
+name: "Wing Commander IV"
+game_slug: wing-commander-iv
+version: Download
+slug: wing-commander-iv
+runner: dosbox
+script:
+  files:
+    - setup: N/A:Select the "bonus" DOS installer downloaded from GOG
+    - dosconf: https://raw.githubusercontent.com/keenanweaver/lutris-files/main/wing-commander-4/dosboxWC4_lutris.conf
+  game:
+    main_file: $GAMEDIR/dosboxWC4_lutris.conf
+  installer:
+    - extract:
+        description: Extract GOG installer
+        file: setup
+        dst: $GAMEDIR
+    - copy:
+        description: Move GOG files to $GAMEDIR
+        src: $GAMEDIR/support/app
+        dst: $GAMEDIR
+    - merge:
+        description: Move DOSBox config to $GAMEDIR
+        src: dosconf
+        dst: $GAMEDIR
